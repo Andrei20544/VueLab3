@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <comp :links="$options.links">
+            <template slot-scope="link">
+                <p href="#">{{link.name}} - {{link.age}}</p>
+            </template>
+        </comp>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        Vue.component("comp", {
+            template: `
+              <ul class="comp">
+                <li class="comp-item" v-for="link in links">
+                    <slot v-bind="link"></slot>
+                </li>
+              </ul>`,
+            props: ["links"]
+        })
+
+        new Vue({
+            el: "#app",
+            links: [
+                {name: "Коля", age: "30"},
+                {name: "Вася", age: "40"},
+                {name: "Петя", age: "50"}
+            ]
+        })
+</script>
+</body>
+</html>
